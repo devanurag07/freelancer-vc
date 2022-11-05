@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Welcome {{name}}. Your Personal Hanzo Page!{% endblock title %}
+{% block body %}
+
+<br><br>
+
+<div class="only-laptop">
+    <hr style="border:1px solid black">
+</div>
+<br><br><br>
+<div class="container">
+
+    <h3>
+        <b>
+        Hello {{name}}, These are your orders so far : 
+        </b>
+    </h3>
+    <div class="h-1 w-60 bg-yellow-500 rounded" bis_skin_checked="1"></div>
+    <br><br>
+    <div class="row">
+
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">
+            <b>Your Previous Orders :</b> 
+            </h4>
+            <div style="width:100%;margin:auto;float:left">
+            
+
+              <ul class="list-group">
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Order Name
+                </li>
+              
+              
+              {% for order in orders %}
+              <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:1.2rem;">
+                  <b>
+                    {{forloop.counter}}) {{order.order_name}}
+                  </b>
+
+                  {% if order.laundry_review == 'No review' %}
+                  <a href="/review/{{order.order_id}}">
+                  <button class="btn btn-warning">Rate Us</button>
+                  </a>
+                  {% endif %}
+              </li>
+              {% endfor %}
+            
+              </ul>
+              
+
+            </div>
+
+        </div>
+        
+    </div>
+
+
+
+</div>
+<br><br><br>
+<br><br><br>
+
+
+
+
+{% endblock body %}
